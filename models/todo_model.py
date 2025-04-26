@@ -5,7 +5,7 @@ class TodoModel:
     def get_all():
         with get_connection() as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT id, task, completed FROM todos")
+                cur.execute("SELECT id, task, completed FROM todos ORDER BY created_at")
                 rows = cur.fetchall()
                 todos = [
                     {'id': row[0], 'task': row[1], 'completed': row[2]}
