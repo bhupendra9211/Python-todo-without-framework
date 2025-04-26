@@ -12,7 +12,7 @@ async function loadTodos() {
         li.innerHTML = `
             <input type="checkbox" ${todo.completed ? 'checked' : ''}>
             <span class="${todo.completed ? 'completed' : ''}">${todo.task}</span>
-            <button class="deleteBtn">🗑️</button>
+            <button class="deleteBtn">Delete</button>
         `;
         li.querySelector('input').addEventListener('change', () => toggleTodo(todo.id));
         li.querySelector('.deleteBtn').addEventListener('click', () => deleteTodo(todo.id));
