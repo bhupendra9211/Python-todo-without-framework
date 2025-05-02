@@ -1,0 +1,16 @@
+# Python backend ignores
+__pycache__/
+*.pyc
+env/
+venv/
+.env
+
+# Node/Capacitor frontend ignores
+mobile-frontend/node_modules/
+mobile-frontend/dist/
+mobile-frontend/www/
+mobile-frontend/.expo/
+mobile-frontend/.next/
+
+# macOS system files
+.DS_Store
