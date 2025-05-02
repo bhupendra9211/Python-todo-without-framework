@@ -1,0 +1,11 @@
+{
+  "appId": "com.example.todo",
+  "appName": "ToDo App",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": {
+    "hostname": "192.168.101.31",
+    "androidScheme": "http",
+    "cleartext": true
+  }
+}

@@ -10,15 +10,18 @@ class TodoServer(BaseHTTPRequestHandler):
             response = TodoRoutes.route(self)
             if response is None:
                 self.send_response(303)
+                self.send_header('Access-Control-Allow-Origin', '*')
                 self.send_header('Location', '/')
                 self.end_headers()
             elif self.path == '/todos':
                 self.send_response(200)
+                self.send_header('Access-Control-Allow-Origin', '*')
                 self.send_header('Content-Type', 'application/json')
                 self.end_headers()
                 self.wfile.write(response.encode())
             else:
                 self.send_response(200)
+                self.send_header('Access-Control-Allow-Origin', '*')
                 self.send_header('Content-Type', 'text/html')
                 self.end_headers()
                 self.wfile.write(response.encode())
@@ -26,7 +29,15 @@ class TodoServer(BaseHTTPRequestHandler):
     def do_POST(self):
         response = TodoRoutes.route(self)
         self.send_response(303)
+        self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Location', '/')
+        self.end_headers()
+
+    def do_OPTIONS(self): 
+        self.send_response(204)
+        self.send_header('Access-Control-Allow-Origin', '*')
+        self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+        self.send_header('Access-Control-Allow-Headers', 'Content-Type')
         self.end_headers()
 
     def serve_static(self):
@@ -40,6 +51,7 @@ class TodoServer(BaseHTTPRequestHandler):
                 content_type = 'application/octet-stream'
             
             self.send_response(200)
+            self.send_header('Access-Control-Allow-Origin', '*')
             self.send_header('Content-Type', content_type)
             self.end_headers()
             with open(filepath, 'rb') as file:
